@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+    @page {
+      size: A4;
+      margin: 20mm 16mm 20mm 16mm;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body {
+      font-family:'IBM Plex Sans Arabic', sans-serif; direction:rtl; text-align:right;
+      color:#e8edf5; background:#0a0e14;
+      font-size:11.2pt; line-height:1.7;
+    }
+    a { color:#00E5D0; text-decoration:none; }
+    code { font-family:'JetBrains Mono',monospace; background:#0b1119;
+      padding:1px 6px; border-radius:5px; font-size:.9em; color:#00E5D0; }
+    strong { color:#00E5D0; font-weight:800; }
+
+    /* ---------- COVER ---------- */
+    .cover {
+      position:relative; height:257mm; margin:-20mm -16mm 0 -16mm;
+      background:radial-gradient(900px 600px at 80% 0%, rgba(0,229,208,.18), transparent 60%), radial-gradient(700px 500px at 0% 100%, rgba(37,99,235,.20), transparent 55%), #0a0e14; color:#fff;
+      padding:38mm 20mm; display:flex; flex-direction:column;
+      page-break-after:always; overflow:hidden;
+    }
+    .cover-kicker { font-size:13pt; letter-spacing:2px; text-transform:uppercase;
+      color:rgba(255,255,255,.85); font-weight:700; margin-bottom:14mm; }
+    .cover-kicker .dot { color:#19f0ff; }
+    .cover h1 { font-size:33pt; font-weight:900; line-height:1.25; margin-bottom:8mm;
+      color:#fff; max-width:150mm; }
+    .cover .csub { font-size:15pt; font-weight:500; color:rgba(255,255,255,.9);
+      max-width:150mm; line-height:1.6; }
+    .cover-meta { margin-top:auto; display:flex; flex-direction:column; gap:5mm; }
+    .cover-chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6mm; }
+    .cover-chip { background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28);
+      border-radius:999px; padding:4px 14px; font-size:9.5pt; font-weight:700; color:#fff; }
+    .cover-chip.conf { background:rgba(255,255,255,.22); }
+    .cover-info { display:flex; gap:16mm; flex-wrap:wrap; }
+    .cover-info .k { font-size:9pt; text-transform:uppercase; letter-spacing:1px;
+      color:rgba(255,255,255,.7); margin-bottom:2px; }
+    .cover-info .v { font-size:12pt; font-weight:800; color:#fff; }
+    .cover-line { position:absolute; left:0; top:0; bottom:0; width:3px;
+      background:linear-gradient(180deg,#19f0ff,transparent); opacity:.6; }
+
+    /* ---------- SECTIONS ---------- */
+    h2.sec { font-size:18pt; font-weight:900; color:#00E5D0;
+      margin:9mm 0 4mm; padding-bottom:3mm; border-bottom:2px solid rgba(255,255,255,.09);
+      display:flex; align-items:center; gap:10px; page-break-after:avoid; }
+    h3.sec { font-size:13.5pt; font-weight:800; color:#e8edf5; margin:6mm 0 3mm; page-break-after:avoid; }
+    .sn { display:inline-flex; align-items:center; justify-content:center; min-width:30px; height:30px;
+      padding:0 8px; border-radius:9px; background:rgba(0,229,208,.12); border:1px solid rgba(0,229,208,.32);
+      color:#00E5D0; font-size:12pt; font-weight:900; font-family:'JetBrains Mono'; }
+    .rsec { page-break-inside:auto; }
+    p { margin:0 0 3mm; color:#e8edf5; }
+    .rl { margin:0 0 4mm; padding-right:7mm; }
+    .rl li { margin:1.5mm 0; }
+
+    /* callouts */
+    .callout { display:flex; gap:10px; padding:4mm 5mm; border-radius:12px; margin:4mm 0;
+      background:#0d1320; border:1px solid rgba(255,255,255,.09);
+      border-right:4px solid #00E5D0; page-break-inside:avoid; }
+    .callout .ci { font-size:15pt; line-height:1.2; }
+    .callout-warn { border-right-color:#ff5d6c; }
+    .callout-key { border-right-color:#ffc24b; background:rgba(0,229,208,.07); }
+    .callout-tip { border-right-color:#34e0a1; }
+
+    /* quotes */
+    blockquote { background:rgba(0,229,208,.07); border-right:4px solid #00E5D0;
+      padding:4mm 6mm; border-radius:10px; margin:4mm 0; font-style:italic; color:#e8edf5;
+      page-break-inside:avoid; }
+    .qcite { margin-top:2mm; font-style:normal; font-weight:700; color:#9aa6b8; font-size:.9em; }
+
+    /* code */
+    pre.code { background:#0b1119; border:1px solid rgba(255,255,255,.09); border-radius:10px;
+      padding:4mm 5mm; font-family:'JetBrains Mono',monospace; font-size:9.5pt; color:#19f0ff;
+      direction:ltr; text-align:left; white-space:pre-wrap; margin:4mm 0; page-break-inside:avoid; line-height:1.6; }
+
+    /* tables */
+    .tbl-wrap { margin:4mm 0; page-break-inside:avoid; }
+    table { width:100%; border-collapse:collapse; font-size:10pt; }
+    th,td { text-align:right; padding:3mm 4mm; border-bottom:1px solid rgba(255,255,255,.09); }
+    th { background:rgba(0,229,208,.12); color:#00E5D0; font-weight:800; font-size:9.5pt;
+      border-bottom:2px solid rgba(0,229,208,.32); }
+    tbody tr:nth-child(even) { background:#0d1320; }
+    .tcap { font-size:9pt; color:#9aa6b8; margin-top:2mm; text-align:center; }
+
+    /* stats */
+    .stats { display:flex; gap:4mm; flex-wrap:wrap; margin:4mm 0; }
+    .stat { flex:1; min-width:38mm; background:#0d1320; border:1px solid rgba(255,255,255,.09);
+      border-radius:12px; padding:5mm; text-align:center; page-break-inside:avoid; }
+    .stat-v { font-size:22pt; font-weight:900; color:#00E5D0; font-family:'JetBrains Mono'; line-height:1.1; }
+    .stat-l { font-size:9pt; color:#9aa6b8; margin-top:2mm; font-weight:600; }
+
+    hr.div { border:none; border-top:1px solid rgba(255,255,255,.09); margin:6mm 0; }
+    .pagebreak { page-break-after:always; }
+
+    /* key findings */
+    .kf-wrap { margin:4mm 0; }
+    .kf { display:flex; gap:10px; align-items:flex-start; background:#0d1320;
+      border:1px solid rgba(255,255,255,.09); border-radius:12px; padding:4mm 5mm; margin:2.5mm 0; page-break-inside:avoid; }
+    .kf-n { flex:none; width:26px; height:26px; border-radius:50%; background:#00E5D0;
+      color:#062; font-weight:900; display:flex; align-items:center;
+      justify-content:center; font-size:11pt; }
+    .kf-t { font-size:10.5pt; }
+
+    /* exec */
+    .exec { background:#0d1320; border:1px solid rgba(255,255,255,.09); border-radius:16px;
+      padding:6mm 7mm; margin:4mm 0 6mm; }
+    .exec-h { margin-top:0; }
+
+    /* toc */
+    .toc { page-break-after:always; }
+    .toc-row { display:flex; align-items:center; gap:8px; padding:2.5mm 0; border-bottom:1px dashed rgba(255,255,255,.09); }
+    .toc-row a { display:flex; align-items:center; gap:10px; color:#e8edf5; font-weight:600; flex:1; }
+    .toc-n { font-family:'JetBrains Mono'; font-weight:800; color:#00E5D0; min-width:34px; }
+
+    /* sources */
+    .src { display:flex; gap:10px; padding:3mm 0; border-bottom:1px solid rgba(255,255,255,.09); page-break-inside:avoid; }
+    .src-n { font-family:'JetBrains Mono'; font-weight:800; color:#00E5D0; flex:none; }
+    .src-t { font-weight:700; font-size:10.5pt; }
+    .src-u { font-family:'JetBrains Mono'; font-size:8.5pt; color:#19f0ff;
+      direction:ltr; text-align:right; word-break:break-all; }
+    .src-m { font-size:9pt; color:#9aa6b8; }
+    
+    /* ===== RESPONSIVE WEB MODE ===== */
+    @page { margin:0; }
+    html { scroll-behavior:smooth; }
+    body { font-size:17px; line-height:1.85; max-width:860px; margin:0 auto;
+      padding:0 20px 80px; background:#0a0e14; }
+    .cover { height:auto; min-height:auto; margin:0 -20px 30px; padding:64px 32px 56px;
+      page-break-after:auto; border-radius:0 0 28px 28px; }
+    .cover h1 { font-size:clamp(26px,6vw,44px); max-width:100%; }
+    .cover .csub { font-size:clamp(15px,3.6vw,19px); max-width:100%; }
+    .cover-kicker { margin-bottom:32px; }
+    .cover-meta { margin-top:40px; }
+    h2.sec { font-size:clamp(20px,4.6vw,26px); margin:36px 0 16px; padding-bottom:12px; scroll-margin-top:16px; }
+    h3.sec { font-size:clamp(17px,3.8vw,20px); margin:24px 0 12px; }
+    .sn { min-width:36px; height:36px; font-size:16px; }
+    p { margin:0 0 14px; }
+    .rl { padding-right:22px; margin-bottom:16px; }
+    .rl li { margin:8px 0; }
+    .callout { padding:16px 18px; margin:18px 0; border-radius:14px; }
+    .callout .ci { font-size:22px; }
+    blockquote { padding:16px 20px; margin:18px 0; }
+    pre.code { padding:16px 18px; font-size:14px; margin:18px 0; overflow-x:auto; }
+    .tbl-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:18px 0; }
+    table { font-size:15px; min-width:100%; }
+    th,td { padding:12px 14px; }
+    .stats { gap:14px; margin:18px 0; }
+    .stat { min-width:120px; padding:20px 16px; border-radius:16px; }
+    .stat-v { font-size:32px; }
+    .stat-l { font-size:13px; }
+    .exec { padding:24px 26px; margin:20px 0 30px; border-radius:20px; }
+    .kf { padding:16px 18px; margin:10px 0; border-radius:14px; }
+    .kf-n { width:32px; height:32px; font-size:15px; }
+    .kf-t { font-size:16px; }
+    .toc { page-break-after:auto; }
+    .toc-row { padding:12px 0; }
+    .src { padding:14px 0; }
+    .src-t { font-size:16px; }
+    .src-u { font-size:12px; }
+    /* reading progress bar */
+    #progress { position:fixed; top:0; right:0; height:4px; width:0%;
+      background:linear-gradient(90deg,#00E5D0,#19f0ff);
+      z-index:999; transition:width .1s ease; box-shadow:0 0 10px #00E5D0; }
+    /* back-to-top */
+    #totop { position:fixed; bottom:22px; left:22px; width:46px; height:46px;
+      border-radius:50%; background:#00E5D0; color:#062;
+      border:none; font-size:22px; cursor:pointer; display:none; align-items:center; justify-content:center;
+      box-shadow:0 6px 20px rgba(0,0,0,.35); z-index:998; }
+    @media (max-width:600px) {
+      .cover { padding:48px 22px 40px; }
+      .cover-info { gap:20px; }
+      .stats { flex-direction:column; }
+    }
+    /* theme toggle button */
+    #themebtn { position:fixed; top:14px; left:14px; z-index:1000;
+      background:rgba(127,127,127,.18); border:1px solid rgba(127,127,127,.35); color:#fff;
+      backdrop-filter:blur(8px); border-radius:999px; padding:8px 16px; font-size:14px;
+      font-weight:700; cursor:pointer; font-family:inherit; }
+    
+    /* ===== ALT THEME (toggled) ===== */
+    [data-theme="alt"] body { background:#ffffff; color:#14202e; }
+    [data-theme="alt"] p, [data-theme="alt"] .kf-t, [data-theme="alt"] li { color:#14202e; }
+    [data-theme="alt"] h2.sec { color:#0b3d91; border-bottom-color:#dde5ee; }
+    [data-theme="alt"] h3.sec { color:#14202e; }
+    [data-theme="alt"] strong { color:#0b3d91; }
+    [data-theme="alt"] a, [data-theme="alt"] .sn, [data-theme="alt"] .toc-n,
+    [data-theme="alt"] .src-n, [data-theme="alt"] .stat-v { color:#1e5fbf; }
+    [data-theme="alt"] .cover { background:linear-gradient(135deg, #0b3d91 0%, #1e5fbf 55%, #2f80ed 100%); }
+    [data-theme="alt"] .exec, [data-theme="alt"] .stat, [data-theme="alt"] .kf,
+    [data-theme="alt"] .callout { background:#f7fafd; border-color:#dde5ee; }
+    [data-theme="alt"] blockquote { background:#eef4fc; border-inline-start-color:#1e5fbf; }
+    [data-theme="alt"] pre.code { background:#f2f5f9; border-color:#dde5ee;
+      color:#0b3d91; }
+    [data-theme="alt"] th { background:#eaf1fc; color:#1e5fbf; border-bottom-color:#c3d8f5; }
+    [data-theme="alt"] td { border-bottom-color:#dde5ee; }
+    [data-theme="alt"] tbody tr:nth-child(even) { background:#f7fafd; }
+    [data-theme="alt"] .sn { background:#eaf1fc; border-color:#c3d8f5; }
+    [data-theme="alt"] .kf-n { background:#1e5fbf; color:#fff; }
+    [data-theme="alt"] .muted, [data-theme="alt"] .src-m, [data-theme="alt"] .stat-l { color:#5b6b7d; }
+    </style></head>
+<body>
+  <div class="cover">
+    <div class="cover-line"></div>
+    <div class="cover-kicker">تقرير بحثي معمّق <span class="dot">◆</span></div>
+    <h1>ليه المجموع العالي مش بيضمن الحكومي؟</h1>
+    <div class="csub">تقرير مرجعي عميق جدًا: آلية الكوتة 5%، حساب المجموع الاعتباري، الحدود الدنيا لكل كلية، الأزمة البرلمانية 2026، وأمثلة محسوبة — الدبلومة الأمريكية والشهادات المعادلة (2025/2026)</div>
+    <div class="cover-meta">
+      <div class="cover-chips"><span class="cover-chip">الشهادات المعادلة</span><span class="cover-chip">الدبلومة الأمريكية</span><span class="cover-chip">الكوتة 5%</span><span class="cover-chip">المجموع الاعتباري</span><span class="cover-chip">الطب الحكومي</span><span class="cover-chip">التنسيق</span><span class="cover-chip">تقرير مرجعي</span><span class="cover-chip conf">مستوى الثقة: عالية</span></div>
+      <div class="cover-info">
+        <div><div class="k">إعداد</div><div class="v">إسلام — Deep Research</div></div>
+        <div><div class="k">التاريخ</div><div class="v">2026-07-04</div></div>
+      </div>
+    </div>
+  </div>
+  
+        <section class="exec">
+          <h2 class="sec exec-h">الملخص التنفيذي</h2>
+          <p>ده تقرير مرجعي <strong>عميق جدًا</strong> بيجاوب على سؤال واحد بالتفصيل الممل: <strong>ليه طالب الدبلومة الأمريكية اللي بيجيب مجموع عالي ممكن ميدخلش جامعة حكومية (طب/هندسة)؟</strong> — مبني على القرار الوزاري 1177 لسنة 2025 بالنص، الموقع الرسمي للمجلس الأعلى للجامعات، بوابة التنسيق، والأزمة البرلمانية 2026.</p><p><strong>الإجابة الجوهرية:</strong> المشكلة مش في مجموعك — المشكلة في <strong>كسر رياضي</strong>: البسط صغير (مقاعد 5% وثابتة) والمقام كبير ومتزايد (آلاف المتقدمين)، والقبول بينهم <strong>بالترتيب التنازلي البحت</strong>. فطالب بمجموع 99% ممكن يترفض من قصر العيني لأن المقاعد خلصت في اللي أعلى منه — مش لأن مجموعه ضعيف.</p><p>التقرير بيغطي بعمق متساوٍ: <strong>آلية الكوتة وتاريخها</strong> (10%→5%)، <strong>حساب المجموع الاعتباري</strong> بالصيغة الرسمية + 3 أمثلة محسوبة، <strong>الحدود الدنيا الرسمية</strong> لكل كلية 2025، <strong>الأزمة البرلمانية</strong> بالأسماء والتواريخ (مطلب رفع الكوتة لـ10%)، و<strong>استراتيجية عملية</strong> تمنعك تسقط من الحكومي.</p>
+          <div class="kf-wrap"><div class="kf"><div class="kf-n">1</div><div class="kf-t">الكوتة = 5% من مقاعد كل كلية لطلاب الشهادات المعادلة، سقف صلب ثابت (كانت 10% قبل كده) — قرار وزاري 1177/2025.</div></div><div class="kf"><div class="kf-n">2</div><div class="kf-t">القبول جوّه الكوتة بالترتيب التنازلي البحت + 'عدم جبر الكسور' (بيقطع لأسفل) = مقاعد أقل فعليًا.</div></div><div class="kf"><div class="kf-n">3</div><div class="kf-t">المجموع الاعتباري = 40% مواد + 60% SAT/EST I + إضافة 15% لـ EST II؛ عتبة 1090 للبونص، حد النجاح 800/1600.</div></div><div class="kf"><div class="kf-n">4</div><div class="kf-t">كل 200 نقطة في SAT I ≈ +7.5 لـ +8% في المجموع النهائي — أقوى رافعة متاحة (أقوى من رفع درجات المدرسة).</div></div><div class="kf"><div class="kf-n">5</div><div class="kf-t">الحد الأدنى الرسمي 2025: طب 95% · أسنان/صيدلة/علاج طبيعي 90% · هندسة/حاسبات 85% — ثابتة كنسبة بس الأرقام الفعلية بترتفع كل سنة.</div></div><div class="kf"><div class="kf-n">6</div><div class="kf-t">أرقام فعلية 2025: طب فاقوس 122.52 · طب القاهرة 121.96 · صيدلة القاهرة 119.37 · هندسة القاهرة 118.32 (من ~137).</div></div><div class="kf"><div class="kf-n">7</div><div class="kf-t">أزمة برلمانية 2026: نواب (بسام الصواف، هايدي المغازي، محمد عبده) + الاتحاد العام للمصريين بالخارج يطالبون برفع الكوتة من 5% لـ10%.</div></div></div>
+        </section>
+  <section class="toc"><h2 class="sec">المحتويات</h2><div class="toc-row"><a href="#sec-core"><span class="toc-n">1</span><span class="toc-t">الإجابة الجوهرية في سطرين</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-quota-rule"><span class="toc-n">2</span><span class="toc-t">قاعدة الـ5%: النص الحرفي والتاريخ</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-tansik-steps"><span class="toc-n">3</span><span class="toc-t">التنسيق خطوة بخطوة (مكتب منفصل)</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-seat-math"><span class="toc-n">4</span><span class="toc-t">حساب المقاعد: إزاي الـ5% بتبقى أرقام؟</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-one-seat"><span class="toc-n">5</span><span class="toc-t">ضمان 'مقعد واحد على الأقل' — سيف ذو حدين</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-why-rejected"><span class="toc-n">6</span><span class="toc-t">ليه المتفوق بيترفض؟ المنطق الرياضي</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-formula"><span class="toc-n">7</span><span class="toc-t">حساب المجموع الاعتباري: الصيغة الرسمية</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-examples"><span class="toc-n">8</span><span class="toc-t">3 أمثلة محسوبة بالكامل</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-sat-lever"><span class="toc-n">9</span><span class="toc-t">أثر رفع SAT I على المجموع (رافعتك الأقوى)</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-minscores"><span class="toc-n">10</span><span class="toc-t">الحدود الدنيا الرسمية 2025 لكل كلية</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-trend"><span class="toc-n">11</span><span class="toc-t">الاتجاه: العتبة ثابتة لكن الأرقام بترتفع</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-strategy"><span class="toc-n">12</span><span class="toc-t">استراتيجية ترتيب الرغبات (متسقطش من الحكومي)</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-crisis"><span class="toc-n">13</span><span class="toc-t">الأزمة البرلمانية 2026 (بالأسماء والتواريخ)</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-voices"><span class="toc-n">14</span><span class="toc-t">أصوات وتجارب حقيقية</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-conclusion"><span class="toc-n">15</span><span class="toc-t">الخلاصة النهائية</span></a><span class="toc-dots"></span></div></section>
+  <section class="rsec"><h2 class="sec" id="sec-core"><span class="sn">1</span>الإجابة الجوهرية في سطرين</h2>
+<div class="callout callout-key"><span class="ci">🔑</span><div>المشكلة مش في مجموعك — المشكلة <strong>كسر رياضي</strong>: بسط صغير (مقاعد 5% ثابتة) ÷ مقام كبير ومتزايد (آلاف المتقدمين)، والقبول بينهم <strong>بالترتيب التنازلي البحت</strong>. فبتترفض لأن المقاعد خلصت في اللي أعلى منك، مش لأن مجموعك ضعيف.</div></div>
+<p>الجملة الصح: <strong>'مش أي مجموع عالي بيدخل طب حكومي'</strong> — مش 'المجموع العالي ملهوش قيمة'. المجموع العالي <strong>شرط ضروري بس مش كافٍ</strong> لكليات القمة. في الكليات النظرية شبه مضمون؛ في القمة (طب/هندسة) شرس وبيحصل رفض فعلي.</p>
+<div class="stats"><div class="stat"><div class="stat-v">5%</div><div class="stat-l">كوتة المقاعد (كانت 10%)</div></div><div class="stat"><div class="stat-v">تنازلي</div><div class="stat-l">آلية القبول جوّه الكوتة</div></div><div class="stat"><div class="stat-v">95%</div><div class="stat-l">عتبة الطب (وبرضه مش ضمان)</div></div><div class="stat"><div class="stat-v">10%</div><div class="stat-l">المطلب البرلماني 2026</div></div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-quota-rule"><span class="sn">2</span>قاعدة الـ5%: النص الحرفي والتاريخ</h2>
+<p>النص الحاكم اليوم = <strong>القرار الوزاري رقم 1177 لسنة 2025</strong> (صادر 22 يونيو 2025):</p>
+<blockquote>تُحدَّد عدد الأماكن التي تُخصَّص للطلاب الحاصلين على الشهادات الثانوية الأجنبية المعادلة بنسبة 5% من الأعداد المقرر قبولها من بين حملة الشهادة الثانوية العامة المصرية في كل كلية أو معهد.<div class="qcite">— قرار وزير التعليم العالي 1177/2025</div></blockquote>
+<h2 class="sec">الفرق بين الأجنبي والعربي</h2>
+<div class="tbl-wrap"><table><thead><tr><th>النوع</th><th>الآلية</th></tr></thead><tbody><tr><td>الأجنبي (أمريكي/بريطاني/IB)</td><td>كوتة ثابتة سقفها 5% — سقف صلب لا يُتجاوز مهما زاد المتقدمون</td></tr><tr><td>العربي</td><td>'نسبة مرنة' لكل دولة × مُعامِل 1.05، بحد أدنى إجمالي 5%</td></tr></tbody></table><div class="tcap">آلية الكوتة حسب نوع الشهادة</div></div>
+<h2 class="sec">التاريخ: من 10% لـ 5%</h2>
+<p>الكوتة كانت في سنوات سابقة تصل لـ <strong>10%</strong> من مقاعد الكليات، وبعدين المجلس الأعلى للجامعات ووزارة التعليم العالي <strong>خفضوها لـ5%</strong> وثبّتوها للشهادات الأجنبية. الخفض ده هو <strong>السبب البنيوي المباشر</strong> إن طالب بمجموع 99% ممكن ميلاقيش مقعد.</p>
+<div class="callout callout-warn"><span class="ci">⚠️</span><div>الخفض أثار موجة اعتراضات إعلامية وقضائية (دعاوى لزيادة مقاعد حملة الثانوية الإنجليزية) — ومقالات وصفته بـ'كابوس النسبة المرنة'.</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-tansik-steps"><span class="sn">3</span>التنسيق خطوة بخطوة (مكتب منفصل)</h2>
+<div class="callout callout-info"><span class="ci">ℹ️</span><div>طلاب الشهادات المعادلة <strong>مبيتنسّقوش مع الثانوية العامة</strong> — ليهم مكتب تنسيق مستقل تمامًا ومنافذ خاصة.</div></div>
+<ol class="rl"><li><strong>مكتب منفصل:</strong> الرئيسي بجامعة القاهرة (بين السرايات)، وفرع الإسكندرية (سموحة). التسجيل عبر بوابة tansik.egypt.gov.eg.</li><li><strong>شرط الإقامة:</strong> إثبات إقامة قانونية للطالب ووليّه في بلد الشهادة، موثّقة من المستشار الثقافي/السفارة.</li><li><strong>عتبة إبداء الرغبة:</strong> قبل ما ترتّب رغبات أصلًا، لازم مجموعك يعدّي الحد الأدنى للقطاع (طب 95% · هندسة/حاسبات 85%). لو ما عدّيتش، <strong>مش هتقدر تكتب الكلية أصلًا</strong>.</li><li><strong>الدفع أولًا:</strong> مبتتسجّلش الرغبات إلا بعد الدفع.</li><li><strong>ترتيب الرغبات:</strong> تنازليًا (الأعلى طموحًا أولًا).</li><li><strong>عدة مراحل:</strong> المرحلة الأولى ثم الثانية، وكل مرحلة ليها حدود دنيا معلنة.</li></ol>
+<div class="callout callout-key"><span class="ci">🔑</span><div><strong>المفتاح الحاسم:</strong> التنسيق بين حملة كل شهادة <strong>كمجموعة منفصلة</strong> حسب الرغبات والمجموع، في حدود الأماكن المخصصة لكل نوع. يعني طلاب الدبلومة الأمريكية بيتنافسوا <strong>فيما بينهم بس</strong> على حصة الأمريكي داخل الـ5% — مش مع البريطاني ولا العربي.</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-seat-math"><span class="sn">4</span>حساب المقاعد: إزاي الـ5% بتبقى أرقام؟</h2>
+<p>القاعدة الحسابية الرسمية: عدد مقاعد المعادلة = <strong>5% × (عدد مقاعد الثانوية العامة في الكلية)</strong>، مع قاعدة مهمة:</p>
+<blockquote>عند حساب الأماكن لكل كلية أو معهد يتم عدم جبر كسور الأماكن إلى العدد الصحيح الأعلى.<div class="qcite">— قواعد المجلس الأعلى للجامعات</div></blockquote>
+<p>يعني الكسر <strong>بيتقطع لأسفل</strong> (floor) مش بيتقرّب لأعلى → مقاعد أقل فعليًا.</p>
+<h2 class="sec">مثال توضيحي (منهجية)</h2>
+<div class="tbl-wrap"><table><thead><tr><th>الخطوة</th><th>الحساب</th></tr></thead><tbody><tr><td>مقاعد الثانوية العامة في الكلية</td><td>≈ 2000 مقعد</td></tr><tr><td>إجمالي كوتة المعادلة</td><td>5% × 2000 = ~100 مقعد</td></tr><tr><td>بس دي موزّعة على</td><td>كل الشهادات (أمريكي + بريطاني + IB + فرنسي + عربي...)</td></tr><tr><td>نصيب الدبلومة الأمريكية</td><td>بضع عشرات فقط</td></tr><tr><td>المتقدمين للدبلومة الأمريكية</td><td>آلاف سنويًا</td></tr><tr><td>النتيجة</td><td>مقعد واحد مقابل عشرات المتقدمين</td></tr></tbody></table><div class="tcap">طب قصر العيني (أرقام استرشادية للمنهجية)</div></div>
+<div class="callout callout-stat"><span class="ci">📊</span><div>الخلاصة الحسابية: المقاعد بالعشرات، المتقدمون بالآلاف → القبول مبيتحسمش بالمجموع المطلق (95% ولا 99%)، بيتحسم بموقعك في <strong>الترتيب التنازلي</strong> لحد ما المقاعد تخلص.</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-one-seat"><span class="sn">5</span>ضمان 'مقعد واحد على الأقل' — سيف ذو حدين</h2>
+<blockquote>شهادة ثانوية أجنبية: مكان واحد في كل كلية أو معهد على الأقل.<div class="qcite">— قواعد المجلس الأعلى للجامعات</div></blockquote>
+<p>يعني حتى لو حساب الـ5% مع عدم جبر الكسور طلّع صفر في كلية صغيرة، بيتضمن <strong>مقعد واحد كحد أدنى</strong> لكل نوع شهادة.</p>
+<div class="callout callout-warn"><span class="ci">⚠️</span><div>بس ده ضمان <strong>لوجود المقعد، مش لحصولك إنت عليه</strong>. المقعد الواحد بيروح لصاحب أعلى مجموع في مجموعتك، والباقي — مهما علت مجاميعهم — بيخرجوا.</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-why-rejected"><span class="sn">6</span>ليه المتفوق بيترفض؟ المنطق الرياضي</h2>
+<ol class="rl"><li><strong>القبول تنازلي بحت</strong> جوّه مجموعتك: المجاميع بتترتب من الأعلى للأدنى، والقبول لحد <strong>نفاد المقاعد</strong> بس.</li><li><strong>المقاعد سقفها 5% وثابتة</strong> (بل بتتقص بعدم جبر الكسور).</li><li><strong>أعداد المتقدمين من الدبلومة الأمريكية بتزيد كل سنة</strong> (انتشار المدارس الدولية).</li><li><strong>النتيجة:</strong> كل سنة الحد الأدنى الفعلي للقبول (cut-off) بيرتفع. ممكن يُقبل السنة اللي فاتت بـ96% وميكفيش 98% السنة دي.</li></ol>
+<div class="callout callout-key"><span class="ci">🔑</span><div>عشان كده بيترفض طالب بمجموع 99.5% — مش لأن مجموعه ضعيف، لكن لأنه مدخلش ضمن أول (عدد المقاعد) في الترتيب. جوهر المشكلة: بسط صغير (مقاعد 5%) ومقام كبير متزايد (متقدمون) بيتحسم بينهم بالترتيب التنازلي.</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-formula"><span class="sn">7</span>حساب المجموع الاعتباري: الصيغة الرسمية</h2>
+<p>الصيغة الرسمية المعتمدة من المجلس الأعلى للجامعات (محدّثة يوليو 2025):</p>
+<div class="tbl-wrap"><table><thead><tr><th>المكوّن</th><th>الوزن</th><th>التفصيل</th></tr></thead><tbody><tr><td>مجموع المواد الثماني (المدرسة/GPA)</td><td>40%</td><td>نسبة درجات الطالب في الـ8 مواد المطلوبة</td></tr><tr><td>SAT I / EST I</td><td>60%</td><td>نسبة درجة الطالب من 1600</td></tr><tr><td>SAT II / EST II (إن قُدِّم)</td><td>+15%</td><td>مكوّن إضافي لكليات القمة</td></tr></tbody></table><div class="tcap">مكوّنات المجموع الاعتباري للدبلومة الأمريكية</div></div>
+<h2 class="sec">الشروط والعتبات</h2>
+<ul class="rl"><li><strong>حد النجاح في المعادلة:</strong> 800 من 1600 في SAT I (حد نجاح بس، مش قبول قمة).</li><li><strong>عتبة 1090 (البونص):</strong> لو جبت 1090+ في SAT I بتاخد درجات إضافية (Bonus) بترفع مجموعك. يعني 1090 مش شرط قبول — دي عتبة تفعيل مكافأة.</li><li><strong>EST II:</strong> حده الأدنى 900 في مادتين، بيتحسب لكليات القمة العملية.</li><li><strong>حداثة الامتحان:</strong> لازم يتأدى خلال سنتين بعد التخرج.</li></ul>
+<pre class="code">النسبة = 0.40×(نسبة المواد) + 0.60×(SAT I ÷ 1600 × 100)
+[+ 15% لـ EST II إن قُدِّم] [+ Bonus لو SAT I ≥ 1090]</pre>
+<div class="callout callout-info"><span class="ci">ℹ️</span><div>التطبيع النهائي: المجموع بيتحوّل لمقياس مصري (من ~410 أو ~137) وبعدين لنسبة مئوية عشان يتقارن بالحدود الدنيا (طب 95%، هندسة 85%).</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-examples"><span class="sn">8</span>3 أمثلة محسوبة بالكامل</h2>
+<h2 class="sec">المثال (أ) — طالب متفوّق</h2>
+<ul class="rl"><li>مواد الـ8: 98% ← 0.40 × 98 = <strong>39.2</strong></li><li>SAT I = 1500 (93.75%) ← 0.60 × 93.75 = <strong>56.25</strong></li><li><strong>الأساس = 95.45%</strong> + بونص (SAT I ≥ 1090) + EST II ممتاز</li><li><strong>النتيجة ≈ 95.5%+ ← يفتح الطب/الأسنان/الصيدلة</strong> — بس على الحافة، والقبول الفعلي يتوقف على cut-off السنة (ممكن يحتاج 97%+ لطب القاهرة).</li></ul>
+<h2 class="sec">المثال (ب) — طالب متوسط</h2>
+<ul class="rl"><li>مواد الـ8: 90% ← 0.40 × 90 = <strong>36.0</strong></li><li>SAT I = 1300 (81.25%) ← 0.60 × 81.25 = <strong>48.75</strong></li><li><strong>الأساس = 84.75%</strong> + بونص بسيط ← ~85-86%</li><li><strong>النتيجة ≈ 85% ← يفتح الهندسة/الحاسبات (حده 85%)</strong>، والطب مقفول (مبيوصلش 95%). مرشّح 'حدّي' للهندسة.</li></ul>
+<h2 class="sec">المثال (ج) — طالب حدّي</h2>
+<ul class="rl"><li>مواد الـ8: 85% ← 0.40 × 85 = <strong>34.0</strong></li><li>SAT I = 1090 (68.13%) ← 0.60 × 68.13 = <strong>40.88</strong></li><li><strong>الأساس ≈ 75%</strong> + بونص على الحد</li><li><strong>النتيجة ≈ 75% ← كليات القمة مقفولة</strong>، وتنفتح الكليات النظرية (تجارة/آداب/حقوق/علوم) حسب حدودها وترتيبه.</li></ul>
+<div class="callout callout-tip"><span class="ci">💡</span><div>الدرس: المجموع الاعتباري شديد الحساسية لـ SAT I لأن وزنه 60%. رفع SAT I أقوى بكتير من رفع درجات المواد المدرسية.</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-sat-lever"><span class="sn">9</span>أثر رفع SAT I على المجموع (رافعتك الأقوى)</h2>
+<p>بتثبيت مواد الـ8 عند 90% (مساهمة ثابتة = 36 نقطة)، شوف أثر رفع SAT I:</p>
+<div class="tbl-wrap"><table><thead><tr><th>SAT I</th><th>مساهمته</th><th>+ المواد (36)</th><th>الإجمالي</th><th>القفزة</th></tr></thead><tbody><tr><td>1090</td><td>40.88</td><td>36</td><td>76.88%</td><td>—</td></tr><tr><td>1300</td><td>48.75</td><td>36</td><td>84.75%</td><td>+7.87%</td></tr><tr><td>1500</td><td>56.25</td><td>36</td><td>92.25%</td><td>+7.50%</td></tr></tbody></table><div class="tcap">أثر SAT I على المجموع (مواد ثابتة 90%)</div></div>
+<div class="callout callout-key"><span class="ci">🔑</span><div>كل 200 نقطة في SAT I ≈ <strong>+7.5 لـ +8 نقاط مئوية</strong> في المجموع (قبل البونص). دي أقوى رافعة متاحة ليك، وأرخص بكتير من محاولة رفع معدل المواد المدرسية بنفس الأثر.</div></div>
+<ul class="rl"><li>من 1090 لـ 1300: +7.87% (تقفز من 'لا هندسة' لـ 'على عتبة الهندسة').</li><li>من 1300 لـ 1500: +7.50% (تقترب من عتبة الطب 95%).</li></ul></section>
+<section class="rsec"><h2 class="sec" id="sec-minscores"><span class="sn">10</span>الحدود الدنيا الرسمية 2025 لكل كلية</h2>
+<p>العتبات الرسمية (نسبة إبداء الرغبة) 2025 — بوابة الدخول قبل أي كلية:</p>
+<div class="tbl-wrap"><table><thead><tr><th>القطاع</th><th>الحد الأدنى الرسمي</th></tr></thead><tbody><tr><td>الطب البشري</td><td>95%</td></tr><tr><td>أسنان + صيدلة + علاج طبيعي + اقتصاد وعلوم سياسية + إعلام</td><td>90%</td></tr><tr><td>هندسة + حاسبات ومعلومات + ذكاء اصطناعي</td><td>85%</td></tr></tbody></table><div class="tcap">العتبات الرسمية حسب القطاع 2025</div></div>
+<h2 class="sec">الأرقام الفعلية 2025 (من ~137)</h2>
+<div class="tbl-wrap"><table><thead><tr><th>الكلية</th><th>الحد الأدنى</th></tr></thead><tbody><tr><td>طب فاقوس</td><td>122.52</td></tr><tr><td>طب أسنان الإسكندرية</td><td>122.28</td></tr><tr><td>طب القاهرة (قصر العيني)</td><td>121.96</td></tr><tr><td>طب عين شمس</td><td>121.84</td></tr><tr><td>طب الإسكندرية / حلوان</td><td>121.66</td></tr><tr><td>طب المنصورة</td><td>120.56</td></tr><tr><td>أرخص طب (أسوان/الوادي الجديد)</td><td>119.99</td></tr></tbody></table><div class="tcap">الحد الأدنى الفعلي — طب (2025)</div></div>
+<div class="tbl-wrap"><table><thead><tr><th>الكلية</th><th>الحد الأدنى</th></tr></thead><tbody><tr><td>أسنان القاهرة</td><td>120.57</td></tr><tr><td>صيدلة عين شمس</td><td>119.68</td></tr><tr><td>علاج طبيعي القاهرة</td><td>119.39</td></tr><tr><td>صيدلة القاهرة</td><td>119.37</td></tr><tr><td>هندسة القاهرة</td><td>118.32</td></tr><tr><td>هندسة الإسكندرية</td><td>117.79</td></tr><tr><td>هندسة عين شمس</td><td>117.64</td></tr><tr><td>هندسة حلوان</td><td>117.34</td></tr></tbody></table><div class="tcap">الحد الأدنى الفعلي — أسنان/صيدلة/علاج طبيعي/هندسة (2025)</div></div>
+<div class="callout callout-info"><span class="ci">ℹ️</span><div>لاحظ: العتبات كنسبة (95/90/85%) <strong>ثابتة كل سنة</strong>، بس الأرقام الفعلية <strong>بترتفع</strong> لأن القاعدة بتقارن بمتوسط 3 سنوات + المتقدمين المتفوقين بيزيدوا. فالقبول الفعلي بيبقى أصعب رغم ثبات العتبة.</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-trend"><span class="sn">11</span>الاتجاه: العتبة ثابتة لكن الأرقام بترتفع</h2>
+<div class="tbl-wrap"><table><thead><tr><th>المؤشر</th><th>2023</th><th>2024</th><th>2025</th><th>الاتجاه</th></tr></thead><tbody><tr><td>العتبة الرسمية للطب</td><td>95%</td><td>95%</td><td>95%</td><td>ثابتة</td></tr><tr><td>العتبة الرسمية للهندسة</td><td>85%</td><td>85%</td><td>85%</td><td>ثابتة</td></tr><tr><td>الحد الرقمي الفعلي للطب (الأقاليم)</td><td>أقل</td><td>متوسط</td><td>122.52</td><td>▲ يقترب من السقف</td></tr></tbody></table><div class="tcap">مقارنة سنوية (2023→2025)</div></div>
+<div class="callout callout-warn"><span class="ci">⚠️</span><div>القراءة الصح: النسبة ثابتة، لكن لأن المتقدمين المتفوقين بيزيدوا والمقاعد محدودة جدًا، <strong>الطالب الأخير الداخل</strong> كل سنة مجموعه أعلى من السنة اللي قبلها → القبول الفعلي أصعب سنة ورا سنة.</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-strategy"><span class="sn">12</span>استراتيجية ترتيب الرغبات (متسقطش من الحكومي)</h2>
+<p>الخطأ القاتل: تملا القائمة بكليات 'حلم' بس، فتخرج من كل حاجة. الحل مزيج <strong>Reach / Match / Safe</strong>:</p>
+<ol class="rl"><li><strong>Reach (طموح — أعلى القائمة):</strong> كليات القمة اللي مجموعك على حافتها. مفيش خسارة من وضعها أولًا (الترتيب تنازلي — لو ما اتقبلتش ينزل طلبك للي بعدها).</li><li><strong>Match (مطابقة):</strong> كليات حدها أقل من مجموعك بـ 3-5% — احتمال دخولك مرتفع.</li><li><strong>Safe (أمان — لازم):</strong> كليات حدها أقل من مجموعك بـ 10%+ — تضمن ماتسقطش من الحكومي. متسبش آخر القائمة فاضي أبدًا.</li></ol>
+<h2 class="sec">شبكات أمان إضافية</h2>
+<ul class="rl"><li><strong>جامعات الأقاليم:</strong> متحصرش رغباتك في القاهرة/إسكندرية/عين شمس (الأشد ازدحامًا). نفس الكلية في محافظة أقل طلبًا حدها أقل → مقعدك الآمن.</li><li><strong>الساعات المعتمدة (Credit-hour):</strong> كتير من كليات القمة ليها برامج ساعات معتمدة بحد أدنى أقل شوية (مقابل مصاريف أعلى) — باب خلفي شرعي لنفس الجامعة الحكومية بمجموع أقل.</li><li><strong>املا أكبر عدد رغبات مشروعة</strong> — الخانات الفاضية بتزوّد خطر الخروج.</li></ul></section>
+<section class="rsec"><h2 class="sec" id="sec-crisis"><span class="sn">13</span>الأزمة البرلمانية 2026 (بالأسماء والتواريخ)</h2>
+<p>الأزمة دي مش كلام على السوشيال بس — وصلت البرلمان فعليًا في 2026، وده أقوى دليل إن الرفض حقيقي:</p>
+<div class="callout callout-warn"><span class="ci">⚠️</span><div>القرار المُفجِّر: المجلس الأعلى اشترط إن مجموع الطالب الدارس بالخارج ميقلّش عن الحد الأدنى المصري بنسبة تزيد عن 5%، وأنباء تطبيقه <strong>بأثر رجعي</strong> على دفعة 2025/2026 — 'نزل كالصاعقة على أولياء الأمور'.</div></div>
+<div class="tbl-wrap"><table><thead><tr><th>النائب</th><th>المطلب</th><th>التاريخ</th></tr></thead><tbody><tr><td>بسام الصواف</td><td>إلغاء شرط الـ5% وتداعيات الأثر الرجعي</td><td>23 أبريل 2026</td></tr><tr><td>هايدي المغازي</td><td>قصور نسب القبول يخل بتكافؤ الفرص</td><td>19 أبريل 2026</td></tr><tr><td>محمد عبده</td><td>العراقيل أمام أبناء المصريين بالخارج</td><td>4 فبراير 2026</td></tr><tr><td>محمود القط (شيوخ)</td><td>لقاء الاتحاد مع الطلبة</td><td>2026</td></tr></tbody></table><div class="tcap">الأصوات البرلمانية (طلبات الإحاطة)</div></div>
+<blockquote>رئيس الاتحاد العام للمصريين بالخارج طالب وزير التعليم العالي برفع نسبة قبول أبناء المصريين بالخارج في الجامعات الحكومية إلى 10% بدلًا من 5% المقررة حاليًا.<div class="qcite">— 6 يناير 2026</div></blockquote>
+<div class="callout callout-info"><span class="ci">ℹ️</span><div>رد الحكومة (لجنة عربية النواب، يونيو 2026): 'نسبة الـ5% نسبة مرنة تُحدَّد حسب أعداد الطلاب وطبيعة القطاعات'. وفيه سابقة تاريخية: وقفة احتجاجية 2016 بنفس المطالب (خفض درجة النجاح + رفع الكوتة فوق 5%).</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-voices"><span class="sn">14</span>أصوات وتجارب حقيقية</h2>
+<h2 class="sec">أصوات الإحباط</h2>
+<blockquote>نظام تحويل الشهادات المعادلة ظالم — ممكن تدخل جامعة مصنّفة أحسن في الخارج لهندسة أو طب، ومترضاش تتقبل في مصر لأن مجموعك الأجنبي العالي بيتحوّل لنسبة أقل.<div class="qcite">— Reddit r/Egypt</div></blockquote>
+<blockquote>99.5% تحرم مصريًا من الطب و70% تفتح الأبواب للوافد! — نطالب بمعاملة أبنائنا كالوافدين والدفع بالدولار عشان نضمن مقعد.<div class="qcite">— بوابة البرلمان — أولياء أمور، 2026</div></blockquote>
+<h2 class="sec">أصوات النجاح (بيدخلوا فعلًا بس بسقف صاروخي)</h2>
+<blockquote>وصلت لـ 1500 و1560 من جريد 12 فقط EST&amp;ACT بالدبلومة الأمريكية ودخلت طب حكومي.<div class="qcite">— د. ميرا عبدالكريم — YouTube</div></blockquote>
+<div class="callout callout-key"><span class="ci">🔑</span><div>الخلاصة من الأصوات: آه بيدخلوا طب/هندسة حكومي — بس اللي بيدخل الطب سكوره غالبًا <strong>1500+ (≈122-124 نقطة)</strong>. القبول ممكن، بس السقف صاروخي والنسبة 5% بس.</div></div>
+<div class="callout callout-info"><span class="ci">ℹ️</span><div>دليل حجم الفئة: تسريب بيانات كشف <strong>356,797 ملف</strong> لطلبة أدّوا EST — رقم بيوضّح إن دي فئة ضخمة بتتنافس على نسبة مقاعد صغيرة.</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-conclusion"><span class="sn">15</span>الخلاصة النهائية</h2>
+<div class="tbl-wrap"><table><thead><tr><th>السؤال</th><th>الإجابة الموثّقة</th></tr></thead><tbody><tr><td>كل مجموع عالي بيدخل حكومي؟</td><td>لأ — كليات القمة بيحصل فيها رفض فعلي</td></tr><tr><td>ليه؟</td><td>كوتة 5% ثابتة + قبول تنازلي + متقدمين متزايدين</td></tr><tr><td>الرفض لأن الدرجة بتتجاهل؟</td><td>لأ — الدرجة شرط ضروري، بس المقاعد بتخلص في الأعلى منك</td></tr><tr><td>الدرجة شبه الكاملة بتضمن؟</td><td>لأ — بتقلّل الخطر بس مفيش ضمان مطلق</td></tr><tr><td>عتبة الطب؟</td><td>95% رسميًا (≈122-124 فعليًا / SAT 1500+)</td></tr><tr><td>فيه حل قادم؟</td><td>أزمة برلمانية 2026 تطالب برفع الكوتة لـ10% (لسه مطلب)</td></tr><tr><td>أقوى رافعة ليك؟</td><td>رفع SAT I — كل 200 نقطة ≈ +7.5% في المجموع</td></tr></tbody></table><div class="tcap">ملخص الإجابة الكاملة</div></div>
+<div class="callout callout-key"><span class="ci">🔑</span><div>الخلاصة الجوهرية: المجموع العالي <strong>شرط ضروري مش كافٍ</strong> لكليات القمة الحكومية. الرفض حقيقي وموثّق (لدرجة أزمة برلمانية)، بس سببه <strong>بنية الكوتة 5% والترتيب التنازلي</strong>، مش تجاهل الدرجة. استراتيجيتك: ارفع SAT I لأقصى حد + رتّب رغباتك Reach/Match/Safe + استخدم الأقاليم والساعات المعتمدة كشبكات أمان.</div></div>
+<div class="callout callout-warn"><span class="ci">⚠️</span><div>تنبيه أمانة: العتبات الرسمية (95/90/85%) والأرقام المنشورة (طب فاقوس 122.52، طب القاهرة 121.96...) مؤكدة من مصادر رسمية. بعض التفاصيل الرقمية الدقيقة (قيمة البونص، عدد مقاعد كل كلية) استرشادية — للأرقام النهائية ارجع لبوابة tansik.digital.gov.eg وقت التنسيق.</div></div></section>
+  <section class="sources"><h2 class="sec">المصادر والمراجع</h2><div class="src"><div class="src-n">[1]</div><div class="src-b"><div class="src-t">قرار وزير التعليم العالي 1177 لسنة 2025 (نص الكوتة 5%)</div><div class="src-u">https://lawhub.info/eg/?p=14986</div><div class="src-m">LawHub · 2025-06-22</div></div></div><div class="src"><div class="src-n">[2]</div><div class="src-b"><div class="src-t">الثانوية الأجنبية المعادلة — القواعد الرسمية والصيغة</div><div class="src-u">https://cnu.mohesr.gov.eg/acceptance/</div><div class="src-m">المجلس الأعلى للجامعات (رسمي) · 2025-07-28</div></div></div><div class="src"><div class="src-n">[3]</div><div class="src-b"><div class="src-t">تفاصيل النسبة المرنة ×1.05</div><div class="src-u">https://www.elwatannews.com/news/details/8119075</div><div class="src-m">الوطن · 2025-08-21</div></div></div><div class="src"><div class="src-n">[4]</div><div class="src-b"><div class="src-t">تنسيق الدبلومة الأمريكية 2025 — الحدود الدنيا لكل الكليات بالدرجات</div><div class="src-u">https://shbabbek.com/show/258427</div><div class="src-m">شبابيك · 2025-09-19</div></div></div><div class="src"><div class="src-n">[5]</div><div class="src-b"><div class="src-t">طب فاقوس 122.52 (رقم فعلي منشور)</div><div class="src-u">https://filgamaa.com/</div><div class="src-m">فيلجماعة · 2025</div></div></div><div class="src"><div class="src-n">[6]</div><div class="src-b"><div class="src-t">العتبات الرسمية: طب 95% هندسة 85%</div><div class="src-u">https://www.youm7.com/story/2025/8/23/7097467</div><div class="src-m">اليوم السابع · 2025-08-23</div></div></div><div class="src"><div class="src-n">[7]</div><div class="src-b"><div class="src-t">حاسبة المجموع الاعتباري والصيغة (40/60 + عتبة 1090)</div><div class="src-u">https://el-malkaacademy.com/local/page/scorecalculator</div><div class="src-m">El-Malka Academy · 2024</div></div></div><div class="src"><div class="src-n">[8]</div><div class="src-b"><div class="src-t">عتبة 1090/البونص/حد النجاح 800/SAT II 900</div><div class="src-u">https://study-in-egy.org/</div><div class="src-m">Study in Egypt · 2025</div></div></div><div class="src"><div class="src-n">[9]</div><div class="src-b"><div class="src-t">SAT II = 15% من المجموع الاعتباري</div><div class="src-u">https://www.minshawymath.com/</div><div class="src-m">Minshawy Math · 2025</div></div></div><div class="src"><div class="src-n">[10]</div><div class="src-b"><div class="src-t">طلب إحاطة النائب بسام الصواف (إلغاء شرط 5%)</div><div class="src-u">https://egyin.com/article/117321</div><div class="src-m">Egypt Independent · 2026-04-23</div></div></div><div class="src"><div class="src-n">[11]</div><div class="src-b"><div class="src-t">طلب إحاطة النائبة هايدي المغازي (تكافؤ الفرص)</div><div class="src-u">https://www.almasryalyoum.com/news/details/4249529</div><div class="src-m">المصري اليوم · 2026-04-19</div></div></div><div class="src"><div class="src-n">[12]</div><div class="src-b"><div class="src-t">طلب إحاطة النائب محمد عبده (عراقيل القبول)</div><div class="src-u">https://gate.ahram.org.eg/News/5588938</div><div class="src-m">بوابة الأهرام · 2026-02-04</div></div></div><div class="src"><div class="src-n">[13]</div><div class="src-b"><div class="src-t">الاتحاد العام للمصريين بالخارج يطالب برفع الكوتة لـ10%</div><div class="src-u">https://almadar24.com/2026/01/06</div><div class="src-m">المدار 24 · 2026-01-06</div></div></div><div class="src"><div class="src-n">[14]</div><div class="src-b"><div class="src-t">99.5% تحرم مصريًا من الطب و70% تفتح للوافد</div><div class="src-u">https://parlgate.com/94589</div><div class="src-m">بوابة البرلمان · 2026-04</div></div></div><div class="src"><div class="src-n">[15]</div><div class="src-b"><div class="src-t">طالبة دخلت طب حكومي بالدبلومة (1500/1560)</div><div class="src-u">https://www.youtube.com/watch?v=CYOHFyz3juA</div><div class="src-m">YouTube · 2024</div></div></div><div class="src"><div class="src-n">[16]</div><div class="src-b"><div class="src-t">تنسيق كل شهادة كمجموعة منفصلة + مقعد واحد على الأقل</div><div class="src-u">https://www.almasryalyoum.com/news/details/973247</div><div class="src-m">المصري اليوم · 2024</div></div></div><div class="src"><div class="src-n">[17]</div><div class="src-b"><div class="src-t">وقفة احتجاجية 2016 (سابقة تاريخية)</div><div class="src-u">https://www.youm7.com/story/2016/8/21/2851777</div><div class="src-m">اليوم السابع · 2016-08-21</div></div></div><div class="src"><div class="src-n">[18]</div><div class="src-b"><div class="src-t">الحدود الدنيا للهندسة/الحاسبات (SAT للمقارنة)</div><div class="src-u">https://thetestadvantage.com/blog/tnsyk-aldblom-alamryky-2025-alhdod-aldnya-lltb-oalhnds</div><div class="src-m">The Test Advantage · 2025-09-20</div></div></div></section>
+  <div id="progress"></div><button id="themebtn" title="Theme">☀️ فاتح / 🌙 غامق</button><button id="totop" title="أعلى">↑</button><script>const p=document.getElementById("progress");const b=document.getElementById("totop");const tb=document.getElementById("themebtn");const root=document.documentElement;if(localStorage.getItem("rtheme")=="alt")root.setAttribute("data-theme","alt");tb.onclick=()=>{const on=root.getAttribute("data-theme")=="alt";if(on){root.removeAttribute("data-theme");localStorage.setItem("rtheme","base");}else{root.setAttribute("data-theme","alt");localStorage.setItem("rtheme","alt");}};addEventListener("scroll",()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;p.style.width=sc+"%";b.style.display=h.scrollTop>400?"flex":"none";});b.onclick=()=>scrollTo({top:0,behavior:"smooth"});</script>
+</body></html>
